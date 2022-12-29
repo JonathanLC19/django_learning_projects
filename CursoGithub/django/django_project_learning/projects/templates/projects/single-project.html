@@ -3,8 +3,14 @@
 
 {% comment %} renderizando un proyecto en el template basado en el key 'id', que pasaremos con el parámetro 'pk' de la vista {% endcomment %}
     <h1>{{project.title}}</h1>
+    <hr>
+    {% for tag in project.tags.all %}
+        <span style="border:1px solid grey" >{{tag}}</span>
+    
+    {% endfor %}
+    <hr>
     <br>
-    <p>{{project.description}}</p>
+    <p>{{project.vote_total}}</p>
 {% comment %} FIN - renderizando un proyecto en el template basado en el key 'id', que pasaremos con el parámetro 'pk' de la vista {% endcomment %}
 
 
