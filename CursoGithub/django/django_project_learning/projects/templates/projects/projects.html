@@ -1,0 +1,30 @@
+{% extends "main.html" %}
+{% block content %}
+
+{% comment %} Practicando añadir variables y condiciones al template {% endcomment %}
+    <h1>Projects Template. {{message}}</h1>
+
+    {% if number > 10 %}
+        <p>Number is {{number}}, so it's greater than 10</p>
+
+    {% elif number == 10 %}
+        <p>Number is 10</p>
+
+    {% else %}
+        <p>Number is {{number}}, so it's less than 10</p>
+    
+    {% endif %}
+{% comment %} FIN - Practicando añadir variables y condiciones al template {% endcomment %}
+
+{% comment %} Trabajar un for loop en template con una lista de diccionarios {% endcomment %}
+
+<ul>
+    {% for project in projects %}
+        {% comment %} se añade link al proyecto desde el título con el método 'url' de django {% endcomment %}
+        <li>Title: <a href="{% url 'project' project.id %}">{{project.title}}</a> --- {{project.description}}</li>
+
+    {% endfor %}
+</ul>
+{% comment %} FIN - Trabajar un for loop en template con una lista de diccionarios {% endcomment %}
+{% endblock content %}
+

@@ -1,0 +1,11 @@
+{% extends 'main.html' %}
+{% block content %}
+
+{% comment %} renderizando un proyecto en el template basado en el key 'id', que pasaremos con el parámetro 'pk' de la vista {% endcomment %}
+    <h1>{{project.title}}</h1>
+    <br>
+    <p>{{project.description}}</p>
+{% comment %} FIN - renderizando un proyecto en el template basado en el key 'id', que pasaremos con el parámetro 'pk' de la vista {% endcomment %}
+
+
+{% endblock content %}
