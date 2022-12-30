@@ -1,7 +1,7 @@
 {% extends "main.html" %}
 {% block content %}
 
-{% comment %} Practicando añadir variables y condiciones al template {% endcomment %}
+{% comment %} Practicando añadir variables y condiciones al template
     <h1>Projects Template. {{message}}</h1>
 
     {% if number > 10 %}
@@ -11,20 +11,47 @@
         <p>Number is 10</p>
 
     {% else %}
-        <p>Number is {{number}}, so it's less than 10</p>
+        <p>Number is {{number}}, so it's less than 10</p> {% endcomment %}
     
-    {% endif %}
+    {% comment %} {% endif %} {% endcomment %}
 {% comment %} FIN - Practicando añadir variables y condiciones al template {% endcomment %}
 
 {% comment %} Trabajar un for loop en template con una lista de diccionarios {% endcomment %}
 
+{% comment %} --------------------------------------------------------------------------------------------------- {% endcomment %}
+
+
+<h1>Project</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Projects</th>
+        <th>Votes</th>
+        <th>Positive Votes</th>
+    </tr>
+    {% for project in projects %}
+        <tr>
+            <td>{{project.id}}</td>
+            <td>{{project.title}}</td>
+            <td>{{project.vote_total}}</td>
+            <td>{{project.vote_ratio}}%</td>
+            <td>{{project.created}}</td>
+            <td><a href= "{% url 'project' project.id %}">View</a></td>
+        </tr>
+    
+    {% endfor %}
+</table>
+
+{% comment %} FIN - Trabajar un for loop en template con una lista de diccionarios
 <ul>
     {% for project in projects %}
         {% comment %} se añade link al proyecto desde el título con el método 'url' de django {% endcomment %}
-        <li>Title: <a href="{% url 'project' project.id %}">{{project.title}}</a> --- {{project.description}}</li>
+        {% comment %} <li>Title: <a href="{% url 'project' project.id %}">{{project.title}}</a> --- {{project.created}}</li> {% endcomment %}
 
-    {% endfor %}
-</ul>
-{% comment %} FIN - Trabajar un for loop en template con una lista de diccionarios {% endcomment %}
+    {% comment %} {% endfor %} {% endcomment %}
+{% comment %} </ul>
+FIN - Trabajar un for loop en template con una lista de diccionarios {% endcomment %}
+
 {% endblock content %}
 
