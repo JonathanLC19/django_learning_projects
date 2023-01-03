@@ -16,7 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# importamos librerias para añadir a urlpatterns los media files
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('projects.urls'))
 ]
+
+# añadimos la función que incorpora los archivos a urlpatterns
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# esta función conecta, del archivo settings.py, la url de los archivos (MEDIA_URLS)
+# con la raiz de almacenamiento (MEDIA_ROOT)
+
+# funcion para incorporar archivos multimedia a urls en producción
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
