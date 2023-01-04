@@ -1,10 +1,12 @@
 from django.db import models
 import uuid
+from users.models import Profile
 
 # Create your models here.
 
 
 class Projects(models.Model):
+    owner = models.ForeignKey(Profile, null= True, blank= True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=200)
     description = models.TextField(null= True, blank= True)
     featured_image = models.ImageField(default='default_logo.png', null= True, blank= True)
@@ -26,7 +28,7 @@ class Projects(models.Model):
 
 
 class Review(models.Model):
-    """creamos una tupla de tuplas 'VOTE_TYPE' que será las opciones de elección para el atributo 'value' añadidas con parámetro 'choice'. """
+    """creamos una tupla de tuplas 'VOTE_TYPE' que será las opciones de elección para el atributo 'value' añadidas con parámetro 'choices'. """
     """el 1er valor de la tupla será el valor y el 2º el string que se muestra"""
     VOTE_TYPE = (
         ('up', 'Up Vote'),
