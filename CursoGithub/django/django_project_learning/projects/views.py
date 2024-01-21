@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .models import Projects
+from .models import Projects, TimeTracker
 from .forms import ProjectForm
 
 # Create your views here.
@@ -121,3 +121,14 @@ def deleteProject(request, pk):
         context = {'object': project}
         return render(request, 'projects/delete_template.html', context)
 
+
+"""--------------- TIMETRACKER -------------------"""
+
+def time_tracker(request, project_id):
+    # Obtén el proyecto correspondiente al project_id
+    project = get_object_or_404(Projects, id=project_id)
+    
+    # Obtén el objeto TimeTracker asociado al proyecto
+    time_tracker = TimeTracker.objects.get(project=project)
+
+    return render(request, 'projects/time_tracker.html', {'project': project, 'time_tracker': time_tracker})

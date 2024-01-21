@@ -2,6 +2,8 @@ from django.db import models
 import uuid
 from users.models import Profile
 
+# from django.apps import apps
+
 # Create your models here.
 
 
@@ -53,3 +55,20 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+"""--------------- TIMETRACKER -------------------"""
+
+
+class TimeTracker(models.Model):
+    project = models.OneToOneField(Projects, on_delete=models.CASCADE, related_name='time_tracker')
+    total_hours = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+
+    def __str__(self):
+        return f'TimeTracker for {self.project.title}'
+
+# # Importa 'Projects' en el nivel donde lo necesites, no en la parte superior del archivo.
+# Projects = apps.get_model('projects', 'Projects')
