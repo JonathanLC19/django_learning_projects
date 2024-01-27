@@ -62,7 +62,7 @@ class Tag(models.Model):
 
 
 class TimeTracker(models.Model):
-    project = models.OneToOneField(Projects, on_delete=models.CASCADE, related_name='time_tracker')
+    project = models.OneToOneField(Projects, on_delete=models.CASCADE)
     total_hours = models.DecimalField(max_digits=5, decimal_places=2, default=0)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
